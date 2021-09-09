@@ -1,0 +1,23 @@
+#!/bin/bash 
+
+function genelSorgu() {
+  toplam = $(dpkg -l | wc -l)
+  echo $toplam
+}
+
+function paketSorgu() {
+  paket = $1
+  yuklumu = $(dpkg -s $paket)
+  paketdepencount = $(apt-cache depends $paket | wc -l)
+
+  if [ !yuklumu ]
+  then
+    echo "$paket yuklu degil, bagimlilik sayisi $paketdepencount" 
+  else
+    echo "$paket yuklu"
+  fi
+}
+
+---
+Ekrana herhangi bir çıktı vermiyor. -> ![1](https://user-images.githubusercontent.com/37108233/132762114-460ebd8f-7017-4d60-a68b-a999d2d0b1c6.PNG)
+---
